@@ -92,6 +92,7 @@ series([
         });
     })(),
     () => promisify(next => {
+        const obj = qs.parse(window.location.search.slice(1));
         const token = store.get('session.token');
         user.signin({ token: token })
             .then(({ authenticated, token }) => {
@@ -104,7 +105,11 @@ series([
                     };
                     controller.connect(host, options, () => {
                         // @see "src/web/containers/Login/Login.jsx"
-                        next();
+                        if (obj.continue) {
+                            window.location = obj.continue;
+                        } else {
+                            next();
+                        }
                     });
                     return;
                 }
