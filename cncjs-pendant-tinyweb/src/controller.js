@@ -55,7 +55,7 @@ socket.on('error', function() {
     socket.destroy();
 
     // Redirect to login page
-    window.location = '/?continue=' + encodeURIComponent(window.location.pathname);
+    window.location = '/?continue=' + encodeURIComponent(window.location.pathname) + '#workspace'
 });
 
 socket.on('close', function() {

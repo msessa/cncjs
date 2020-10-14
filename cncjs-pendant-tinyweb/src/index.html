@@ -14,9 +14,11 @@
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="stylesheet" type="text/css" href="vendor/normalize/normalize.css">
-<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="vendor/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/theme.css">
+<link rel="stylesheet" type="text/css" href="css/rangeslider.css">
 <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
@@ -24,7 +26,7 @@
     <div style="background: transparent url('loading.gif') no-repeat 0 0; height: 32px; width: 32px; display: block; margin: 0 auto;"></div>
     <div style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; color: #222; text-align: center; margin-top: 10px;">Loading...</div>
 </div>
-<div class="hidden" data-route="workspace">
+<div class="d-none" data-route="workspace">
     <div class="form-group clearfix">
         <div class="pull-left">
             <input type="text" class="form-control" data-name="port" readonly value="" />
@@ -41,7 +43,7 @@
     <div class="form-group actions">
     </div>
 </div>
-<div class="hidden" data-route="connection">
+<div class="d-none" data-route="connection">
     <div data-name="msg"></div>
     <div class="form-group">
         <label>Controller Type</label>
@@ -73,50 +75,43 @@
         <button type="button" class="btn btn-primary" data-name="btn-open">Open</button>
     </div>
 </div>
-<div class="hidden" data-route="axes">
+<div class="d-none" data-route="axes">
     <div class="nav-panel">
         <div class="container-fluid">
             <div class="row no-gutter">
-                <div class="col-xs-2">
-                    <div class="btn-group btn-group-justified">
-                        <div class="btn-group">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-default" data-name="btn-dropdown" data-toggle="dropdown">
-                                    <i class="fa fa-list"></i>
+                <div class="col-2">
+                    <div class="btn-group btn-group-justified btn-block">
+                        <div class="btn-group btn-block">
+                            <div class="dropdown btn-block">
+                                <button type="button" class="btn btn-block btn-secondary" data-name="btn-dropdown"
+                                data-toggle="dropdown"> <i class="fa fa-list"></i>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command('homing')"><i class="fa fa-home"></i>&nbsp;Homing</a>
+                                    <li class="dropdown-item"> <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command(&apos;homing&apos;)"><i class="fa fa-home"></i>&#xA0;Homing</a>
                                     </li>
-                                    <li class="sleep">
-                                        <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command('gcode', '$SLP')"><i class="fa fa-bed"></i>&nbsp;Sleep</a>
+                                    <li class="sleep dropdown-item"> <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command(&apos;gcode&apos;, &apos;$SLP&apos;)"><i class="fa fa-bed"></i>&#xA0;Sleep</a>
                                     </li>
-                                    <li class="unlock">
-                                        <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command('unlock')"><i class="fa fa-unlock-alt"></i>&nbsp;Unlock</a>
+                                    <li class="unlock dropdown-item"> <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command(&apos;unlock&apos;)"><i class="fa fa-unlock-alt"></i>&#xA0;Unlock</a>
                                     </li>
-                                    <li>
-                                        <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command('reset')"><i class="fa fa-undo"></i>&nbsp;Reset</a>
+                                    <li class="dropdown-item"> <a role="menuitem" href="javascript:void(0)" onclick="cnc.controller.command(&apos;reset&apos;)"><i class="fa fa-undo"></i>&#xA0;Reset</a>
                                     </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                        <a role="menuitem" href="#/workspace"><i class="fa fa-chevron-left"></i>&nbsp;Back</a>
+                                    <li role="separator" class="divider dropdown-item"></li>
+                                    <li class="dropdown-item"> <a role="menuitem" href="#/workspace"><i class="fa fa-chevron-left"></i>&#xA0;Back</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-6">
                     <div class="active-state" data-name="active-state"></div>
                 </div>
-                <div class="col-xs-2">
-                    <button type="button" class="btn btn-default cyclestart" onclick="cnc.controller.command('cyclestart')">
-                        <i class="fa fa-play"></i>
+                <div class="col-2">
+                    <button type="button" class="btn btn-secondary cyclestart" onclick="cnc.controller.command(&apos;cyclestart&apos;)"> <i class="fa fa-play"></i>
                     </button>
                 </div>
-                <div class="col-xs-2">
-                    <button type="button" class="btn btn-default feedhold" onclick="cnc.controller.command('feedhold')">
-                        <i class="fa fa-pause"></i>
+                <div class="col-2">
+                    <button type="button" class="btn btn-secondary feedhold" onclick="cnc.controller.command(&apos;feedhold&apos;)"> <i class="fa fa-pause"></i>
                     </button>
                 </div>
             </div>
@@ -125,61 +120,48 @@
     <div class="axis-position">
         <div class="container-fluid">
             <div class="row no-gutter">
-                <div class="col-xs-2">
+                <div class="col-3"></div>
+                <div class="col-3">
+                    <div class="axis-label">X</div>
                 </div>
-                <div class="col-xs-10">
-                    <div class="col-xs-4">
-                        <div class="axis-label">X</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="axis-label">Y</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="axis-label">Z</div>
-                    </div>
+                <div class="col-3">
+                    <div class="axis-label">Y</div>
+                </div>
+                <div class="col-3">
+                    <div class="axis-label">Z</div>
                 </div>
             </div>
             <div class="row no-gutter">
-                <div class="col-xs-2" data-name="mpos-label">
-                    MPos:
+                <div class="col-3" data-name="mpos-label">MPos:</div>
+                <div class="col-3">
+                    <div class="axis-position" data-name="mpos-x">0.000</div>
                 </div>
-                <div class="col-xs-10">
-                    <div class="col-xs-4">
-                        <div class="axis-position" data-name="mpos-x">0.000</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="axis-position" data-name="mpos-y">0.000</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="axis-position" data-name="mpos-z">0.000</div>
-                    </div>
+                <div class="col-3">
+                    <div class="axis-position" data-name="mpos-y">0.000</div>
+                </div>
+                <div class="col-3">
+                    <div class="axis-position" data-name="mpos-z">0.000</div>
                 </div>
             </div>
             <div class="row no-gutter">
-                <div class="col-xs-2" data-name="wpos-label">
-                    WPos:
+                <div class="col-3" data-name="wpos-label">WPos:</div>
+                <div class="col-3">
+                    <div class="axis-position" data-name="wpos-x">0.000</div>
                 </div>
-                <div class="col-xs-10">
-                    <div class="col-xs-4">
-                        <div class="axis-position" data-name="wpos-x">0.000</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="axis-position" data-name="wpos-y">0.000</div>
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="axis-position" data-name="wpos-z">0.000</div>
-                    </div>
+                <div class="col-3">
+                    <div class="axis-position" data-name="wpos-y">0.000</div>
+                </div>
+                <div class="col-3">
+                    <div class="axis-position" data-name="wpos-z">0.000</div>
                 </div>
             </div>
         </div>
     </div>
     <div class="control-pad">
         <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-xs-2 slider">
-                    XY Step
-                </div>
-                <div class="col-xs-9 slider">
+            <div class="row no-gutter sliderrow">
+                <div class="col-2 slider">XY Step</div>
+                <div class="col-9 slider">
                     <datalist id="steplist">
                         <option>0</option>
                         <option>1</option>
@@ -190,119 +172,115 @@
                         <option>6</option>
                         <option>7</option>
                     </datalist>
-                    <input id="distanceXYinput" type="range" min="0" value="3" step="1" max="7" list="steplist" oninput="cnc.displayXYdistance(value)">
+                    <input id="distanceXYinput" type="range" min="0" value="3" step="1" max="7"
+                    list="steplist" oninput="cnc.displayXYdistance(value)">
                 </div>
-                <div class="col-xs-1 slider">
-                    <output data-name="distanceXY" for="distanceXYinput" id="distanceXYdisplay">5</output>
-                </div>
-            </div>
-            <div class="row no-gutter">
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-x-minus jog-y-plus"
-                        title="Move X- Y+"
-                        onclick="cnc.sendMove('X-Y+');"
-                    >
-                        <i class="fa fa-arrow-circle-up rotate--45deg"></i>
-                    </button>
-                </div>
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-y-plus"
-                        title="Move Y+"
-                        onclick="cnc.sendMove('Y+')"
-                    >
-                        Y+
-                    </button>
-                </div>
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-x-plus jog-y-plus"
-                        title="Move X+ Y+"
-                        onclick="cnc.sendMove('X+Y+')"
-                    >
-                        <i class="fa fa-arrow-circle-up rotate-45deg"></i>
-                    </button>
+                <div class="col-1 slider">
+                    <output data-name="distanceXY" for="distanceXYinput" id="distanceXYdisplay">1</output>
                 </div>
             </div>
             <div class="row no-gutter">
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-x-minus"
-                        title="Move X-"
-                        onclick="cnc.sendMove('X-')"
-                    >
-                        X-
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-x-minus jog-y-plus"
+                    title="Move X- Y+" onclick="cnc.sendMove(&apos;X-Y+&apos;);"> <i class="fa fa-arrow-circle-up rotate--45deg"></i>
                     </button>
                 </div>
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-xy-zero"
-                        title="Reset XY Zero"
-                        onclick="confirm('Are you sure you want to reset the XY zero position?') && cnc.setXYzero()"
-                    >
-                        Reset XY Zero
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-y-plus" title="Move Y+"
+                    onclick="cnc.sendMove(&apos;Y+&apos;)">Y+</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-x-plus jog-y-plus"
+                    title="Move X+ Y+" onclick="cnc.sendMove(&apos;X+Y+&apos;)"> <i class="fa fa-arrow-circle-up rotate-45deg"></i>
                     </button>
                 </div>
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-x-plus"
-                        title="Move X+"
-                        onclick="cnc.sendMove('X+')"
-                    >
-                        X+
-                    </button>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-z jog-z-plus" title="Move Z+"
+                    onclick="cnc.sendMove(&apos;Z+&apos;)">Z+</button>
                 </div>
             </div>
             <div class="row no-gutter">
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-x-minus jog-y-minus"
-                        title="Move X- Y-"
-                        onclick="cnc.sendMove('X-Y-')"
-                    >
-                        <i class="fa fa-arrow-circle-down rotate-45deg"></i>
-                    </button>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-x-minus" title="Move X-"
+                    onclick="cnc.sendMove(&apos;X-&apos;)">X-</button>
                 </div>
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-y-minus"
-                        title="Move Y-"
-                        onclick="cnc.sendMove('Y-')"
-                    >
-                        Y-
-                    </button>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-xy-zero" title="Go to XY Zero"
+                    onclick="confirm(&apos;Are you sure you want jog to X0Y0?&apos;) &amp;&amp; cnc.sendMove(&apos;X0Y0&apos;)">Go X0Y0</button>
                 </div>
-                <div class="col-xs-4">
-                    <button
-                        type="button"
-                        class="btn btn-default jog-x-plus jog-y-minus"
-                        title="Move X+ Y-"
-                        onclick="cnc.sendMove('X+Y-')"
-                    >
-                        <i class="fa fa-arrow-circle-down rotate--45deg"></i>
-                    </button>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-x-plus" title="Move X+"
+                    onclick="cnc.sendMove(&apos;X+&apos;)">X+</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-z jog-z-zero" title="Move To Z Zero (G0 Z0)"
+                    onclick="confirm(&apos;Are you sure you want jog to Z0?&apos;) &amp;&amp; cnc.sendMove(&apos;Z0&apos;)">Go Z0</button>
                 </div>
             </div>
-            
+            <div class="row no-gutter">
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-x-minus jog-y-minus"
+                    title="Move X- Y-" onclick="cnc.sendMove(&apos;X-Y-&apos;)"> <i class="fa fa-arrow-circle-down rotate-45deg"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-y-minus" title="Move Y-"
+                    onclick="cnc.sendMove(&apos;Y-&apos;)">Y-</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-x-plus jog-y-minus"
+                    title="Move X+ Y-" onclick="cnc.sendMove(&apos;X+Y-&apos;)"> <i class="fa fa-arrow-circle-down rotate--45deg"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-z jog-z-minus" title="Move Z-"
+                    onclick="cnc.sendMove(&apos;Z-&apos;)">Z-</button>
+                </div>
+            </div>
+            <div class="row no-gutter sliderrow">
+                <div class="col-2 slider">Z Step</div>
+                <div class="col-9 slider">
+                    <datalist id="zsteplist">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </datalist>
+                    <input id="distanceZinput" type="range" min="0" value="3" step="1" max="6"
+                    list="zsteplist" oninput="cnc.displayZdistance(value)">
+                </div>
+                <div class="col-1 slider">
+                    <output data-name="distanceZ" for="distanceZinput" id="distanceZdisplay">1</output>
+                </div>
+            </div>
+            <hr class="ruler">
+            <div class="row no-gutter">
+                <div class="col-9">
+                    <button type="button" class="btn btn-secondary jog-xy-zero" title="Reset XY Zero"
+                    onclick="confirm(&apos;Are you sure you want to reset the XY zero position?&apos;) &amp;&amp; cnc.setXYzero()">Set X0Y0</button>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary jog-z jog-z-zero" title="Reset Z Zero"
+                    onclick="confirm(&apos;Are you sure you want to reset the Z zero position?&apos;) &amp;&amp; cnc.setZzero()">Set Z0</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="vendor/director/director.min.js"></script>
 <script src="vendor/lodash/lodash.min.js"></script>
-<script src="vendor/jquery/jquery-2.2.1.min.js"></script>
+<!-- <script src="vendor/jquery/jquery-2.2.1.min.js"></script> -->
 <script src="vendor/iframe-resizer/iframeResizer.contentWindow.min.js"></script>
 <script src="vendor/js-cookie/js.cookie.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script>
 $('document').ready(function() {
     var root = window;
@@ -336,8 +314,8 @@ $('document').ready(function() {
             var view = views.filter('[data-route="' + route + '"]');
 
             if (view.length) {
-                views.addClass('hidden');
-                view.removeClass('hidden');
+                views.addClass('d-none');
+                view.removeClass('d-none');
             }
         }
     });

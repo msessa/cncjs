@@ -109,6 +109,20 @@ cnc.displayXYdistance = function(value) {
     $('[data-route="axes"] [data-name="distanceXY"]').text(distance);
 }
 
+cnc.displayZdistance = function(value) {
+    let optionMap = {
+        0: 0.10,
+        1: 0.25,
+        2: 0.50,
+        3: 1,
+        4: 2,
+        5: 5,
+        6: 10
+    };
+    let distance = optionMap[value];
+    $('[data-route="axes"] [data-name="distanceZ"]').text(distance);
+}
+
 cnc.reConnect = function() {
     if (cnc.controllerType && cnc.port && cnc.baudrate) {
 	controller.openPort(cnc.port, {
@@ -145,6 +159,9 @@ cnc.sendMove = function(cmd) {
         },
         'G30': function() {
             controller.command('gcode', 'G30');
+        },
+        'X0Y0': function() {
+            move({ X: 0, Y: 0})
         },
         'X0Y0Z0': function() {
             move({ X: 0, Y: 0, Z: 0 })

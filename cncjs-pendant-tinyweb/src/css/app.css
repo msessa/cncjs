@@ -10,9 +10,6 @@
 [data-route="axes"] {
   padding: 5px;
   font-size: 14px;
-    height: 100vh;
-    min-height: 100vh;
-    padding: 0;
 }
 [data-route="axes"] > * {
   margin-bottom: 5px;
@@ -39,9 +36,9 @@
 [data-route="axes"] .active-state {
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #f6f6f6;
   padding: 5px 10px;
   text-align: center;
+  height: 100%;
 }
 [data-route="axes"] .axis-label {
   text-align: right;
@@ -76,8 +73,6 @@
   transform: rotate(-90deg);
 }
 [data-route="axes"] .control-pad {
-height: 100vh;
-min-height: 100vh;
 padding: 0;
 }
 [data-route="axes"] .control-pad .row [class^="col-"],
@@ -98,13 +93,29 @@ padding: 0;
   width: 100%;
   padding-left: 0;
   padding-right: 0;
-  height: 50px !important;
+  height: 75px !important;
   font-size: 15px;
 }
 [data-route="axes"] .control-pad .slider {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+[data-route="axes"] .sliderrow {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0 !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+
+[data-route="axes"] .ruler {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 @media (min-width: 768px) {
   [data-route="axes"] {
     font-size: 20px;
@@ -196,4 +207,9 @@ padding: 0;
     font-size: 28px;
     height: 52px;
   }
+}
+
+[data-route="axes"] .jog-z {
+  margin-left: 10%;
+  width: 90% !important;
 }
