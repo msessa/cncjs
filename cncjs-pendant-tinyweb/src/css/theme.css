@@ -6,6 +6,7 @@
 body {
     background-color: #131313;
     color: #d6d6d6;
+    touch-action: none;
 }
 th {
     font-weight: normal;
