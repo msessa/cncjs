@@ -152,6 +152,7 @@ cnc.sendMove = function(cmd) {
         controller.command('gcode', 'G0 ' + s);
     };
     var distance = Number($('[data-route="axes"] output[data-name="distanceXY"]').val()) || 0;
+    var distanceZ = Number($('[data-route="axes"] output[data-name="distanceZ"]').val()) || 0;
 
     var fn = {
         'G28': function() {
@@ -200,10 +201,10 @@ cnc.sendMove = function(cmd) {
             jog({ Y: distance });
         },
         'Z-': function() {
-            jog({ Z: -distance });
+            jog({ Z: -distanceZ });
         },
         'Z+': function() {
-            jog({ Z: distance });
+            jog({ Z: distanceZ });
         }
     }[cmd];
 
