@@ -89,7 +89,8 @@ padding: 0;
 [data-route="axes"] .control-pad .row:last-child {
   padding-bottom: 0;
 }
-[data-route="axes"] .control-pad .btn {
+
+[data-route="axes"] .control-pad .big-buttons .btn {
   width: 100%;
   padding-left: 0;
   padding-right: 0;
@@ -99,6 +100,15 @@ padding: 0;
 [data-route="axes"] .control-pad .slider {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+[data-route="axes"] .control-pad .slider .btn {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+[data-route="axes"] .control-pad .slider label {
+  font-size: 11px;
 }
 
 [data-route="axes"] .sliderrow {

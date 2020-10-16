@@ -11,6 +11,9 @@
 <title>CNCjs</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes">
+<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black" /> -->
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="stylesheet" type="text/css" href="vendor/normalize/normalize.css">
@@ -159,104 +162,126 @@
     <div class="control-pad">
         <div class="container-fluid">
             <div class="row no-gutter sliderrow">
-                <div class="col-2 slider">XY Step</div>
-                <div class="col-9 slider">
-                    <datalist id="steplist">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                    </datalist>
-                    <input id="distanceXYinput" type="range" min="0" value="3" step="1" max="7"
-                    list="steplist" oninput="cnc.displayXYdistance(value)">
-                </div>
-                <div class="col-1 slider">
-                    <output data-name="distanceXY" for="distanceXYinput" id="distanceXYdisplay">1</output>
-                </div>
-            </div>
-            <div class="row no-gutter">
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-x-minus jog-y-plus"
-                    title="Move X- Y+" onclick="cnc.sendMove(&apos;X-Y+&apos;);"> <i class="fa fa-arrow-circle-up rotate--45deg"></i>
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-y-plus" title="Move Y+"
-                    onclick="cnc.sendMove(&apos;Y+&apos;)">Y+</button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-x-plus jog-y-plus"
-                    title="Move X+ Y+" onclick="cnc.sendMove(&apos;X+Y+&apos;)"> <i class="fa fa-arrow-circle-up rotate-45deg"></i>
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-z jog-z-plus" title="Move Z+"
-                    onclick="cnc.sendMove(&apos;Z+&apos;)">Z+</button>
+                <div class="col-2 slider" style="padding-top: 15px;">XY Step</div>
+                <div class="col-10 slider">
+                    <div class="btn-group btn-group-toggle" id="xystep" data-toggle="buttons" style="width: 100%;">
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="0.25" autocomplete="off">0.25
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="0.5" autocomplete="off">0.5
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="1" autocomplete="off">1
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="5" autocomplete="off">5
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="10" autocomplete="off" checked>10
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="50" autocomplete="off">50
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="100" autocomplete="off">100
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="200" autocomplete="off">200
+                        </label>
+                      </div>
                 </div>
             </div>
-            <div class="row no-gutter">
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-x-minus" title="Move X-"
-                    onclick="cnc.sendMove(&apos;X-&apos;)">X-</button>
+            <div class="big-buttons">
+                <div class="row no-gutter">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-x-minus jog-y-plus"
+                        title="Move X- Y+" onclick="cnc.sendMove(&apos;X-Y+&apos;);"> <i class="fa fa-arrow-circle-up rotate--45deg"></i>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-y-plus" title="Move Y+"
+                        onclick="cnc.sendMove(&apos;Y+&apos;)">Y+</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-x-plus jog-y-plus"
+                        title="Move X+ Y+" onclick="cnc.sendMove(&apos;X+Y+&apos;)"> <i class="fa fa-arrow-circle-up rotate-45deg"></i>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-z jog-z-plus" title="Move Z+"
+                        onclick="cnc.sendMove(&apos;Z+&apos;)">Z+</button>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-xy-zero" title="Go to XY Zero"
-                    onclick="confirm(&apos;Are you sure you want jog to X0Y0?&apos;) &amp;&amp; cnc.sendMove(&apos;X0Y0&apos;)">Go X0Y0</button>
+                <div class="row no-gutter">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-x-minus" title="Move X-"
+                        onclick="cnc.sendMove(&apos;X-&apos;)">X-</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-xy-zero" title="Go to XY Zero"
+                        onclick="confirm(&apos;Are you sure you want jog to X0Y0?&apos;) &amp;&amp; cnc.sendMove(&apos;X0Y0&apos;)">Go X0Y0</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-x-plus" title="Move X+"
+                        onclick="cnc.sendMove(&apos;X+&apos;)">X+</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-z jog-z-zero" title="Move To Z Zero (G0 Z0)"
+                        onclick="confirm(&apos;Are you sure you want jog to Z0?&apos;) &amp;&amp; cnc.sendMove(&apos;Z0&apos;)">Go Z0</button>
+                    </div>
                 </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-x-plus" title="Move X+"
-                    onclick="cnc.sendMove(&apos;X+&apos;)">X+</button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-z jog-z-zero" title="Move To Z Zero (G0 Z0)"
-                    onclick="confirm(&apos;Are you sure you want jog to Z0?&apos;) &amp;&amp; cnc.sendMove(&apos;Z0&apos;)">Go Z0</button>
-                </div>
-            </div>
-            <div class="row no-gutter">
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-x-minus jog-y-minus"
-                    title="Move X- Y-" onclick="cnc.sendMove(&apos;X-Y-&apos;)"> <i class="fa fa-arrow-circle-down rotate-45deg"></i>
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-y-minus" title="Move Y-"
-                    onclick="cnc.sendMove(&apos;Y-&apos;)">Y-</button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-x-plus jog-y-minus"
-                    title="Move X+ Y-" onclick="cnc.sendMove(&apos;X+Y-&apos;)"> <i class="fa fa-arrow-circle-down rotate--45deg"></i>
-                    </button>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary jog-z jog-z-minus" title="Move Z-"
-                    onclick="cnc.sendMove(&apos;Z-&apos;)">Z-</button>
+                <div class="row no-gutter">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-x-minus jog-y-minus"
+                        title="Move X- Y-" onclick="cnc.sendMove(&apos;X-Y-&apos;)"> <i class="fa fa-arrow-circle-down rotate-45deg"></i>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-y-minus" title="Move Y-"
+                        onclick="cnc.sendMove(&apos;Y-&apos;)">Y-</button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-x-plus jog-y-minus"
+                        title="Move X+ Y-" onclick="cnc.sendMove(&apos;X+Y-&apos;)"> <i class="fa fa-arrow-circle-down rotate--45deg"></i>
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-secondary jog-z jog-z-minus" title="Move Z-"
+                        onclick="cnc.sendMove(&apos;Z-&apos;)">Z-</button>
+                    </div>
                 </div>
             </div>
             <div class="row no-gutter sliderrow">
-                <div class="col-2 slider">Z Step</div>
-                <div class="col-9 slider">
-                    <datalist id="zsteplist">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                    </datalist>
-                    <input id="distanceZinput" type="range" min="0" value="3" step="1" max="6"
-                    list="zsteplist" oninput="cnc.displayZdistance(value)">
-                </div>
-                <div class="col-1 slider">
-                    <output data-name="distanceZ" for="distanceZinput" id="distanceZdisplay">1</output>
+                <div class="col-2 slider" style="padding-top: 15px;">Z Step</div>
+                <div class="col-10 slider">
+                    <div class="btn-group btn-group-toggle" id="zstep" data-toggle="buttons" style="width: 100%;">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="options" id="0.1" autocomplete="off">0.1
+                          </label>
+                        <label class="btn btn-secondary active">
+                          <input type="radio" name="options" id="0.25" autocomplete="off">0.25
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="0.5" autocomplete="off">0.5
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="options" id="1" autocomplete="off" checked>1
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="2" autocomplete="off">2
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="5" autocomplete="off">5
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="10" autocomplete="off">10
+                        </label>
+                      </div>
                 </div>
             </div>
             <hr class="ruler">
-            <div class="row no-gutter">
+            <div class="row no-gutter big-buttons">
                 <div class="col-9">
                     <button type="button" class="btn btn-secondary jog-xy-zero" title="Reset XY Zero"
                     onclick="confirm(&apos;Are you sure you want to reset the XY zero position?&apos;) &amp;&amp; cnc.setXYzero()">Set X0Y0</button>
